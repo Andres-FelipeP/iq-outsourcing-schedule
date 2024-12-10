@@ -1,0 +1,80 @@
+{%  extends 'base_empleados.html' %}{% load static %}
+
+{% block title %} Empleado {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4 text-primary">¡Bienvenid@ {{request.user.nombre}} a la Selección de Horarios de Descansos!</h1>
+            <p class="lead text-secondary">IQ OUTSOURCING te ofrece la posibilidad de elegir tus horarios de descanso bi-mensuales.</p>
+            <hr class="my-4">
+
+            <!-- Instrucciones -->
+            <h2 class="text-primary">Instrucciones para elegir tu horario</h2>
+            <div class="row mt-4">
+                <div class="col-lg-6 offset-lg-3">
+                    <ul class="list-group shadow-sm">
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>1. Dirigete a la seccion de reservas</strong> para visualizar el calendario de descanso.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>2. Revisa los horarios disponibles</strong> para realizar tu proceso de reserva.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>3. Verifica los requisitos</strong> .
+                        </li>
+
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>4. Elije tu turno</strong> mañana o tarde.
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Requerimientos -->
+            <h2 class="text-danger">Requerimientos para seleccionar tu horario</h2>
+            <div class="row mt-4">
+                <div class="col-lg-6 offset-lg-3">
+                    <ul class="list-group shadow-sm">
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>1. NO Coordinadores</strong> pueden escoger cualquier dia.
+                        </li>
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>2. Cualquier Empleado</strong> solo tiene derecho a medio dia(Mañana o Tarde) cada 2 meses.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>3. Coordinadores</strong> solo pueden escoger los viernes libres.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>4. Los Coordinadores</strong> NO pueden escoger el mismo horario.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Botón para continuar -->
+            <div class="mt-5">
+                <a href="{% url 'calendario_reservas' %}" class="btn btn-primary btn-lg">Selecciona tus descansos ahora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-4 mt-5">
+        <p class="text-muted mb-0">&copy; 2024 IQ OUTSOURCING. Todos los derechos reservados.</p>
+    </footer>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+
+
+
+{% extends 'base_admin.html' %}
+{% load static %}
+{% block content %}
+<h1 class="mb-4">Editar Usuario: {{ usuario.nombre }}</h1>
+        <!-- Mostrar mensajes de éxito o error -->
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Formulario de edición -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_cedula" class="form-label">Cédula</label>
+                {{ form.cedula }}
+            </div>
+            <div class="mb-3">
+                <label for="id_nombre" class="form-label">Nombre</label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Correo</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="id_tipo_usuario" class="form-label">Tipo de Usuario</label>
+                {{ form.tipo_usuario }}
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+        </form>
+
+        <!-- Enlace para regresar a la lista de usuarios -->
+        <a href="{% url 'empleados' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+
+{% endblock %}

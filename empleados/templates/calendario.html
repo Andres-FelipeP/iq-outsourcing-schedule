@@ -1,0 +1,57 @@
+{% extends 'base_empleados.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-primary">Sistema de Reservas</h1>
+    <div id="calendar"></div>
+
+    <!-- Modal para crear reserva -->
+    <div class="modal fade" id="reservaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h5 class="modal-title">Crear Reserva</h5>
+
+
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="fecha" name="fecha">
+                        <label for="turno">Turno:</label>
+                        <select class="form-select" name="turno" required>
+                            <option value="mañana">Mañana</option>
+                            <option value="tarde">Tarde</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Reservar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FullCalendar Script -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            dateClick: function (info) {
+                document.getElementById('fecha').value = info.dateStr;
+                var modal = new bootstrap.Modal(document.getElementById('reservaModal'));
+                modal.show();
+            },
+            events: {{ eventos|safe }}
+        });
+        calendar.render();
+    });
+</script>
+{% endblock %}

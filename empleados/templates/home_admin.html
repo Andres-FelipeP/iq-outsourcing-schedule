@@ -1,0 +1,59 @@
+{%  extends 'base_admin.html' %}{% load static %}
+
+{% block title %} Administrador {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Sistema de Reservas</h1>
+
+    <div class="d-flex justify-content-center align-items-center ">
+    <button id="downloadPDF" class="btn btn-dark w-50">Descargar PDF</button>
+</div>
+
+
+    <div id="calendar"></div>
+</div>
+
+<!-- FullCalendar Script -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            dateClick: function (info) {
+                document.getElementById('fecha').value = info.dateStr;
+                var modal = new bootstrap.Modal(document.getElementById('reservaModal'));
+                modal.show();
+            },
+            events: {{ eventos|safe }}
+        });
+        calendar.render();
+    });
+</script>
+
+
+
+<!-- Agrega los scripts necesarios -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    document.getElementById('downloadPDF').addEventListener('click', function () {
+        const calendarEl = document.getElementById('calendar');
+
+        // Usa html2canvas para capturar el calendario como imagen
+        html2canvas(calendarEl).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jspdf.jsPDF('landscape');
+            const imgWidth = 280; // Ancho en mm
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Mantiene la proporción
+            pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+            pdf.save('calendario.pdf');
+        });
+    });
+</script>
+
+
+{% endblock %}

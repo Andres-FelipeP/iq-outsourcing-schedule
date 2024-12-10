@@ -1,0 +1,42 @@
+{% extends 'base_empleados.html' %}
+{% block content %}
+<div class="container mt-5">
+        <h1 class="text-center text-primary mb-3">Mis Reservas</h1>
+
+
+        <!-- Tabla de Reservas -->
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Turno</th>
+                    <th>Creado en</th>
+                    <th>Acciones</th> <!-- Columna de acciones -->
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.fecha }}</td>
+                    <td>{{ reserva.turno }}</td>
+                    <td>{{ reserva.creado_en }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_reserva' reserva.id %}" class="btn btn-danger btn-sm"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar esta reserva?');">
+                            Eliminar
+                        </a>
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No tienes reservas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

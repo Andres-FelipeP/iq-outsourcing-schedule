@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100 bg-light" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+    <div class="card shadow-lg border-0" style="width: 35rem; border-radius: 15px;">
+        <div class="card-body text-center py-5 px-4">
+            <img src="{% static 'images/IQ.png' %}" alt="IQ OUTSOURCING Logo" class="mb-4" style="max-width: 150px;">
+            <h1 class="card-title mb-4 text-primary" style="font-size: 2.5rem; font-weight: bold;">IQ OUTSOURCING</h1>
+            <p class="card-text text-muted mb-5" style="font-size: 1.25rem;">Reserva tu horario de descanso</p>
+
+            <h2 class="mb-4" style="font-size: 1.75rem;">Iniciar Sesión</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3" style="border-radius: 30px; font-size: 1.2rem;">Iniciar Sesión</button>
+            </form>
+
+            <hr class="my-5" style="border-top: 2px solid #e9ecef;">
+            <p class="text-muted" style="font-size: 1rem;">¿No tienes una cuenta? <a href="#" class="text-primary" style="font-weight: 600;">Regístrate aquí</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

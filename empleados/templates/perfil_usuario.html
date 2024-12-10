@@ -1,0 +1,10 @@
+{% extends 'base_empleados.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Perfil de {{ usuario.nombre }}</h2>
+    <p><strong>Cédula:</strong> {{ usuario.cedula }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>Tipo de Usuario:</strong> {{ usuario.tipo_usuario }}</p>
+</div>
+{% endblock %}
