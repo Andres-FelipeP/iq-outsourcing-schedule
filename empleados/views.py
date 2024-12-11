@@ -119,7 +119,7 @@ def calendario(request):
         fecha = request.POST.get('fecha')
         turno = request.POST.get('turno')
 
-        if request.method.user.tipo_usuario == 'admin':
+        if request.user.tipo_usuario == 'admin':
             messages.warning(request, "No tienes permisos para crear una reserva.")
             return redirect('calendario')
 
