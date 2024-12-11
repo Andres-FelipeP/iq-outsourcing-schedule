@@ -26,8 +26,6 @@ SECRET_KEY = 'django-insecure-=4y^1frrcwzq!uy7pm(_rpv1zqs)1l*!^+(u6g=@^r%s-x^x4l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 AUTH_USER_MODEL = 'empleados.User'
 
 MEDIA_URL = '/media/'
@@ -129,6 +127,12 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "descanso_empleados/static"),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+ALLOWED_HOSTS = ['*']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
