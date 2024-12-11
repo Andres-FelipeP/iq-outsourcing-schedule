@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'descanso_empleados.urls'
@@ -122,11 +124,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "descanso_empleados/static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -144,7 +144,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',  # Bootstrap usa 'danger' para errores (fondo rojo)
 }
 
-import os
+SECRET_KEY = 'django-insecure-=4y^1frrcwzq!uy7pm(_rpv1zqs)1l*!^+(u6g=@^r%s-x^x4l'
+DEBUG = False
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+

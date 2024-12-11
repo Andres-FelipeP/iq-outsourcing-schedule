@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
 
-<h2 class="card-title text-center mb-4">Registra el Personal</h2>
+<div class="text-center mb-4">
+    <h1 class="display-4 text-primary">Registra tu Personal</h1>
+</div>
     <form method="post">
         {% csrf_token %}
         {{ user_form.as_p }}
