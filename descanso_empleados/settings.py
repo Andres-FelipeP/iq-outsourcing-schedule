@@ -20,12 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=4y^1frrcwzq!uy7pm(_rpv1zqs)1l*!^+(u6g=@^r%s-x^x4l'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 AUTH_USER_MODEL = 'empleados.User'
 
 MEDIA_URL = '/media/'
@@ -149,3 +143,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',  # Bootstrap usa 'danger' para errores (fondo rojo)
 }
+
+import os
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
