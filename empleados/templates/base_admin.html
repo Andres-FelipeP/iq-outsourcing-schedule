@@ -26,10 +26,13 @@
                         <a class="nav-link" href="{% url 'register' %}">Registrar Empleados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home_admin' %}">Calendario</a>
+                        <a class="nav-link" href="{% url 'calendario_reservas' %}">Calendario</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'empleados' %}">Mis empleados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mis_reservas' %}">Mis reservas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
@@ -46,6 +49,14 @@
     </nav>
 
     <main class="container my-5">
+        <div class="container mt-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
         {% block content %}
         {% endblock %}
     </main>

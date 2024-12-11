@@ -5,13 +5,13 @@
 <div class="text-center mb-4">
     <h1 class="display-4 text-primary">Registra tu Personal</h1>
 </div>
-    <form method="post">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        <button type="submit" class="btn btn-primary btn-block">
-            Registrar
-        </button>
-    </form>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">
+        Registrar
+    </button>
+</form>
 
 {% endblock %}
-

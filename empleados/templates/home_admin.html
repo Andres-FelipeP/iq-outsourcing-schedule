@@ -4,58 +4,71 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1 class="display-4 text-primary">Calendario de descansos</h1>
+        <div class="text-center">
+            <h1 class="display-4 text-primary">¡Bienvenid@ {{request.user.nombre}} a la Selección de Horarios de Descansos!</h1>
+            <p class="lead text-secondary">En el programa Cuidando al Cuidador, te ofrecemos la posibilidad de elegir tus horarios de descanso bi-mensuales.</p>
+            <hr class="my-4">
+
+            <!-- Instrucciones -->
+            <h2 class="text-primary">Instrucciones para elegir tu horario</h2>
+            <div class="row mt-4">
+                <div class="col-lg-6 offset-lg-3">
+                    <ul class="list-group shadow-sm">
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>1. Dirigete a la seccion de reservas</strong> para visualizar el calendario de descanso.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>2. Revisa los horarios disponibles</strong> para realizar tu proceso de reserva.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>3. Verifica los requisitos</strong> .
+                        </li>
+
+
+                        <li class="list-group-item border-0 border-bottom" >
+                            <strong>4. Elije tu turno</strong> mañana o tarde.
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Requerimientos -->
+            <h2 class="text-danger">Requerimientos para seleccionar tu horario</h2>
+            <div class="row mt-4">
+                <div class="col-lg-6 offset-lg-3">
+                    <ul class="list-group shadow-sm">
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>1. NO Coordinadores</strong> pueden escoger cualquier dia.
+                        </li>
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>2. Cualquier Empleado</strong> solo tiene derecho a medio dia(Mañana o Tarde) cada 2 meses.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>3. Coordinadores</strong> solo pueden escoger los viernes libres.
+                        </li>
+
+                        <li class="list-group-item border-0 border-bottom ">
+                            <strong>4. Los Coordinadores</strong> NO pueden escoger el mismo horario.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Botón para continuar -->
+            <div class="mt-5">
+                <a href="{% url 'calendario_reservas' %}" class="btn btn-primary btn-lg">Selecciona tus descansos ahora</a>
+            </div>
+        </div>
     </div>
-
-    <div class="d-flex justify-content-center align-items-center ">
-        <button id="downloadPDF" class="btn btn-dark w-50">Descargar PDF</button>
-    </div>
-
-
-    <div id="calendar"></div>
-</div>
-
-<!-- FullCalendar Script -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            selectable: true,
-            dateClick: function (info) {
-                document.getElementById('fecha').value = info.dateStr;
-                var modal = new bootstrap.Modal(document.getElementById('reservaModal'));
-                modal.show();
-            },
-            events: {{ eventos|safe }}
-        });
-        calendar.render();
-    });
-</script>
-
-
-
-<!-- Agrega los scripts necesarios -->
-<script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-    document.getElementById('downloadPDF').addEventListener('click', function () {
-        const calendarEl = document.getElementById('calendar');
-
-        // Usa html2canvas para capturar el calendario como imagen
-        html2canvas(calendarEl).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jspdf.jsPDF('landscape');
-            const imgWidth = 280; // Ancho en mm
-            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Mantiene la proporción
-            pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-            pdf.save('calendario.pdf');
-        });
-    });
-</script>
-
 
 {% endblock %}
