@@ -67,13 +67,7 @@ TEMPLATES = [
     },
 ]
 
-
-
 WSGI_APPLICATION = 'descanso_empleados.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -81,10 +75,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,10 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -112,11 +98,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 
 STATIC_URL = '/static/'
 
@@ -126,11 +107,8 @@ STATICFILES_DIRS = [
 
 ALLOWED_HOSTS = ['cuidando-al-cuidador-schedule.onrender.com', '127.0.0.1', 'localhost']
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 from django.contrib.messages import constants as messages
 
@@ -146,4 +124,3 @@ SECRET_KEY = 'django-insecure-=4y^1frrcwzq!uy7pm(_rpv1zqs)1l*!^+(u6g=@^r%s-x^x4l
 DEBUG = False
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
