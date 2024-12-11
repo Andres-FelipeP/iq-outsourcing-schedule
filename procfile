@@ -1,1 +1,1 @@
-web: gunicorn descanso_empleados.wsgi
+web: gunicorn descanso_empleados.wsgi:application
