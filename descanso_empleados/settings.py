@@ -124,9 +124,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "descanso_empleados/static"),
 ]
 
-
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cuidando-al-cuidador-schedule.onrender.com', '127.0.0.1', 'localhost']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
