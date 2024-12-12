@@ -59,12 +59,21 @@ class Reserva(models.Model):
         Verifica si la reserva es válida con base en la regla de descanso cada 2 meses.
         """
         dos_meses_atras = self.fecha - timedelta(days=60)
+        dos_meses_adelante = self.fecha + timedelta(days=60)
+        
         reservas_previas = Reserva.objects.filter(
             usuario=self.usuario,
             fecha__gte=dos_meses_atras,
             fecha__lt=self.fecha
         )
-        return not reservas_previas.exists()
+
+        reservas_posteriores = Reserva.objects.filter(
+            usuario=self.usuario,
+            fecha__gt=self.fecha,
+            fecha__lte=dos_meses_adelante
+        )
+        
+        return not reservas_previas.exists() and not reservas_posteriores.exists()
 
     def __str__(self):
         return f'{self.usuario} - {self.fecha} ({self.turno})'
